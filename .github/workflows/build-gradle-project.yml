@@ -15,6 +15,7 @@ jobs:
       run: | 
          cd convert-tool/ 
          ./gradlew standaloneJar
+         java -jar app/build/libs/recipes-converter-all.jar
     - name: Archive test report
       uses: actions/upload-artifact@v3
       with:
