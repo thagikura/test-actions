@@ -19,5 +19,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: Test report
-          path: app/build/libs/
+          path: app/build/libs/recipes-converter-all.jar
          
