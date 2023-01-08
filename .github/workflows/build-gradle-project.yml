@@ -19,5 +19,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: Test report
-          path: build/artifacts/
+          path: app/build/libs/
          
