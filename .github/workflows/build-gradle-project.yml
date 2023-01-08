@@ -12,5 +12,6 @@ jobs:
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
     - name: Run build with Gradle Wrapper
-      run: cd convert-tool/
-      run: ./gradlew build
+      run: | 
+         cd convert-tool/ 
+         ./gradlew build
