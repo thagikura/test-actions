@@ -19,7 +19,7 @@ jobs:
     - name: Run converter
       run: | 
          mkdir Github
-         java -jar ./app/build/libs/recipes-converter-all.jar \
+         java -jar app/build/libs/recipes-converter-all.jar \
          --action convert --sourceAll ../recipes \
           --destination ../Github \
           --agpVersion 8.0.0-alpha10 --gradleVersion 7.5.1 --overwrite
