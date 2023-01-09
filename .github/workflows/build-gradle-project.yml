@@ -33,5 +33,6 @@ jobs:
        git config user.email noreply@github.com
        git add Github/*
        git commit --message "Prepare release"
+       git pull
     - name: Push new branch
       run: git push -u origin agp8.0.0
