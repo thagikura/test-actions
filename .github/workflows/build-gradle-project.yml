@@ -26,3 +26,16 @@ jobs:
           --destination Github \
           --agpVersion 8.0.0-alpha10 --gradleVersion 7.5.1 --overwrite
           tree
+    - name: Create release branch
+      run: git checkout -b agp8.0.0
+    - name: Initialize mandatory git config
+      run: |
+       git config user.name "GitHub Actions"
+       git config user.email noreply@github.com
+    - name: Commit changelog and manifest files
+      id: make-commit
+      run: |
+        git add Github/*
+        git commit --message "Prepare release"
+    - name: Push new branch
+      run: git push origin release
