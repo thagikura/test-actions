@@ -22,3 +22,5 @@ jobs:
          --action convert --sourceAll ../recipes \
           --destination ../Github \
           --agpVersion 8.0.0-alpha10 --gradleVersion 7.5.1 --overwrite
+          cd ../Github
+          tree
