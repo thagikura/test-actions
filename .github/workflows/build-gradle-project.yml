@@ -37,5 +37,6 @@ jobs:
       run: |
         git add Github/*
         git commit --message "Prepare release"
+        git remote add origin https://github.com/borisf/test-actions
     - name: Push new branch
       run: git push -u origin release
