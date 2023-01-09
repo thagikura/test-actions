@@ -20,10 +20,10 @@ jobs:
       run: | 
          mkdir Github
          echo "$PWD"
-         ls -l app/build/libs/
-         java -jar app/build/libs/recipes-converter-all.jar \
-         --action convert --sourceAll ../recipes \
-          --destination ../Github \
+         ls -l convert-tool/app/build/libs/
+         java -jar convert-tool/app/build/libs/recipes-converter-all.jar \
+         --action convert --sourceAll recipes \
+          --destination Github \
           --agpVersion 8.0.0-alpha10 --gradleVersion 7.5.1 --overwrite
           cd ../Github
           tree
