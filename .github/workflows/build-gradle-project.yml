@@ -13,6 +13,7 @@ jobs:
       uses: gradle/gradle-build-action@v2
     - name: Run build with Gradle Wrapper
       run: | 
+         mkdir Github
          cd convert-tool/ 
          ./gradlew standaloneJar
          java -jar app/build/libs/recipes-converter-all.jar \
