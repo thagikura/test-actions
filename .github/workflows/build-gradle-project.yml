@@ -25,7 +25,6 @@ jobs:
           tree
     - name: Initialize mandatory git config
       run: |
-       git push origin -d agp8.0.0-alpha10
        git checkout -b agp8.0.0-alpha10
        git config user.name "GitHub Actions"
        git config user.email noreply@github.com
