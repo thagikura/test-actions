@@ -31,4 +31,4 @@ jobs:
        git add Github/*
        git commit --message "Prepare release"
     - name: Push new branch
-      run: git push --set-upstream origin agp8.0.0
+      run: git push --set-upstream origin agp8.0.0-alpha10
