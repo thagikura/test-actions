@@ -27,7 +27,6 @@ jobs:
     - name: Cleaning folders and commit
       run: |
        cd Recipes
-       git init
        git checkout --orphan agp8.0.0-alpha10
        git config user.name "GitHub Actions"
        git config user.email noreply@github.com
