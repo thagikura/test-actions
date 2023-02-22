@@ -32,6 +32,7 @@ jobs:
     - name: Cleaning folders and commit
       run: |
        mv Recipes/* .
+       git add .
        rm -rf ./convert-tool/*
        rm -rf ./gradle-resources/*
        rm -rf ./.github/*
@@ -40,6 +41,5 @@ jobs:
        git rm -r --cached ./gradle-resources/*
        git rm -r --cached ./.github/*
        git rm -r --cached ./recipes/*
-       git add .
        git commit --message "Prepare release"
        git push --set-upstream origin agp8.0.0-alpha10
