@@ -12,11 +12,6 @@ jobs:
       uses: actions/checkout@v3
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
-    - name: Initialize mandatory git config and checkout
-      run: |
-       git checkout -b agp8.0.0-alpha10
-       git config user.name "GitHub Actions"
-       git config user.email noreply@github.com
     - name: Run build with Gradle Wrapper
       working-directory: ./convert-tool 
       run: | 
@@ -31,15 +26,11 @@ jobs:
           tree
     - name: Cleaning folders and commit
       run: |
-       rm -rf ./convert-tool/*
-       git rm -r --cached ./convert-tool/*
-       rm -rf ./gradle-resources/*
-       git rm -r --cached ./gradle-resources/*
-       rm -rf ./.github/*
-       git rm -r --cached ./.github/*
-       rm -rf ./recipes/*
-       git rm -r --cached ./recipes/*
-       git add Recipes/*
+       cd Recipes
+       git init
+       git checkout --orphan
+       git config user.name "GitHub Actions"
+       git config user.email noreply@github.com
+       git add .
        git commit --message "Prepare release"
-    - name: Push new branch
-      run: git push --set-upstream origin agp8.0.0-alpha10
+       git push --set-upstream origin HEAD:agp8.0.0-alpha10
