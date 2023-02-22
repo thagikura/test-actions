@@ -26,12 +26,11 @@ jobs:
       run: | 
          java -jar convert-tool/app/build/libs/recipes-converter-all.jar \
          --action convert --sourceAll recipes \
-          --destination . \
+          --destination Recipes \
           --agpVersion 8.0.0-alpha10 --gradleVersion 7.5.1 --overwrite
           tree
     - name: Cleaning folders and commit
       run: |
-       git add .
        rm -rf ./convert-tool/*
        rm -rf ./gradle-resources/*
        rm -rf ./.github/*
@@ -40,5 +39,7 @@ jobs:
        git rm -r --cached ./gradle-resources/*
        git rm -r --cached ./.github/*
        git rm -r --cached ./recipes/*
+       mv ./Recipes ./
+       git add .
        git commit --message "Prepare release"
        git push --set-upstream origin agp8.0.0-alpha10
