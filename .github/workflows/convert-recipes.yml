@@ -31,6 +31,10 @@ jobs:
           tree
     - name: Cleaning folders and commit
       run: |
+       rm -rf ./convert-tool/*
+       rm -rf ./gradle-resources/*
+       rm -rf ./.github/*
+       rm -rf ./recipes/*
        git rm -r --cached ./convert-tool/*
        git rm -r --cached ./gradle-resources/*
        git rm -r --cached ./.github/*
