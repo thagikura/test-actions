@@ -39,7 +39,6 @@ jobs:
        git rm -r --cached ./gradle-resources/*
        git rm -r --cached ./.github/*
        git rm -r --cached ./recipes/*
-       cd ..
        mv Recipes/* .
        git add .
        git commit --message "Prepare release"
