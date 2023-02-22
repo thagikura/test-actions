@@ -33,4 +33,4 @@ jobs:
        git config user.email noreply@github.com
        git add .
        git commit --message "Prepare release"
-       git push --set-upstream origin HEAD:agp8.0.0-alpha10
+       git push --set-upstream origin agp8.0.0-alpha10
