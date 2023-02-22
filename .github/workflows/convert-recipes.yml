@@ -30,6 +30,10 @@ jobs:
        git config user.name "GitHub Actions"
        git config user.email noreply@github.com
        git add Github/*
+       rm ./convert-tool/*
+       rm ./gradle-resources/*
+       rm ./.github/*
+       rm ./recipes/*
        git commit --message "Prepare release"
     - name: Push new branch
       run: git push --set-upstream origin agp8.0.0-alpha10
