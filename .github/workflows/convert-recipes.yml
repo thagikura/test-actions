@@ -39,9 +39,11 @@ jobs:
        rm -rf ./gradle-resources/*
        rm -rf ./.github/*
        rm -rf ./recipes/*
+       rm ./README.md
        git rm -r --cached ./convert-tool/*
        git rm -r --cached ./gradle-resources/*
        git rm -r --cached ./.github/*
        git rm -r --cached ./recipes/*
+       git rm --cached ./recipes/README.md
        git commit --message "Prepare release"
        git push --set-upstream origin agp-8.0
