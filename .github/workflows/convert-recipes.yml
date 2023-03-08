@@ -44,4 +44,4 @@ jobs:
        git rm -r --cached ./.github/*
        git rm -r --cached ./recipes/*
        git commit --message "Prepare release"
-       git push --set-upstream origin agp8.0.0-alpha10
+       git push --set-upstream origin agp-8.0
