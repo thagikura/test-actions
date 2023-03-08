@@ -46,4 +46,4 @@ jobs:
        git rm -r --cached ./recipes/*
        git rm --cached ./README.md
        git commit --message "Prepare release"
-       git push --set-upstream origin agp-8.0
+       git push -f --set-upstream origin agp-8.0
