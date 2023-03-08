@@ -43,4 +43,5 @@ jobs:
        git rm -r --cached ./recipes/*
        git commit --message "Prepare release"
        git branch --set-upstream-to=origin/agp-8.0
+       git fetch
        git push -u
