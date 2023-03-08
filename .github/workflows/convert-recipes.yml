@@ -42,6 +42,5 @@ jobs:
        git rm -r --cached ./.github/*
        git rm -r --cached ./recipes/*
        git commit --message "Prepare release"
-       git config pull.rebase only   
+       git config pull.rebase true   
        git pull origin agp-8.0
-       git push origin agp-8.0
