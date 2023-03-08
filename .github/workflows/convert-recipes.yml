@@ -42,4 +42,5 @@ jobs:
        git rm -r --cached ./.github/*
        git rm -r --cached ./recipes/*
        git commit --message "Prepare release"
-       git push -f origin master
+       git pull origin agp-8.0
+       git push origin agp-8.0
