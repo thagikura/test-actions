@@ -35,7 +35,7 @@ jobs:
        git add .
        rm -rf ./convert-tool/*
        rm ./convert-tool/.gitattributes
-	     rm ./convert-tool/.gitignore
+       rm ./convert-tool/.gitignore
        rm -rf ./gradle-resources/*
        rm -rf ./.github/*
        rm -rf ./recipes/*
