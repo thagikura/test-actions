@@ -42,4 +42,4 @@ jobs:
          git rm -r --cached ./recipes/*
          git commit --message "Prepare release"
          git push -f --set-upstream origin test-agp-8.0
-         git checkout master
+         git checkout main
