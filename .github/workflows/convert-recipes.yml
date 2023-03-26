@@ -23,7 +23,7 @@ jobs:
            "bird:chirp"
            "bash:rock" ) 
          for animal in "${ARRAY[@]}" ; do
-           git checkout -b test-agp-8.0
+           git checkout -b test-agp-8.0 + "$KEY"
            cd convert-tool
            ./gradlew standaloneJar
            tree
@@ -46,6 +46,6 @@ jobs:
            git rm -r --cached ./.github/*
            git rm -r --cached ./recipes/*
            git commit --message "Prepare release"
-           git push -f --set-upstream origin test-agp-8.0
+           git push -f --set-upstream origin test-agp-8.0 + "$KEY"
            git checkout main
          done
