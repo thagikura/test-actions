@@ -28,19 +28,17 @@ jobs:
           --destination Recipes \
           --agpVersion 8.0.0-alpha10 --gradleVersion 7.5.1 --overwrite
           tree
-    - name: Cleaning folders and commit
-      run: |
-       mv Recipes/* .
-       git add .
-       rm -rf ./convert-tool/*
-       rm ./convert-tool/.gitattributes
-       rm ./convert-tool/.gitignore
-       rm -rf ./gradle-resources/*
-       rm -rf ./.github/*
-       rm -rf ./recipes/*
-       git rm -r --cached ./convert-tool/*
-       git rm -r --cached ./gradle-resources/*
-       git rm -r --cached ./.github/*
-       git rm -r --cached ./recipes/*
-       git commit --message "Prepare release"
-       git push -f --set-upstream origin test-agp-8.0
+         mv Recipes/* .
+         git add .
+         rm -rf ./convert-tool/*
+         rm ./convert-tool/.gitattributes
+         rm ./convert-tool/.gitignore
+         rm -rf ./gradle-resources/*
+         rm -rf ./.github/*
+         rm -rf ./recipes/*
+         git rm -r --cached ./convert-tool/*
+         git rm -r --cached ./gradle-resources/*
+         git rm -r --cached ./.github/*
+         git rm -r --cached ./recipes/*
+         git commit --message "Prepare release"
+         git push -f --set-upstream origin test-agp-8.0
