@@ -12,18 +12,15 @@ jobs:
       uses: actions/checkout@v3
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
-    - name: Initialize mandatory git config and checkout
+    - name: Initialize mandatory git config
       run: |
-       git checkout -b test-agp-8.0
        git config user.name "GitHub Actions"
        git config user.email noreply@github.com
-    - name: Run build with Gradle Wrapper
-      working-directory: ./convert-tool 
+    - name: Checkout and run build with Gradle Wrapper
       run: | 
-         ./gradlew standaloneJar
+         git checkout -b test-agp-8.0
+         ./convert-tool/gradlew standaloneJar
          tree
-    - name: Run converter
-      run: | 
          java -jar convert-tool/app/build/libs/recipes-converter-all.jar \
          --action convert --sourceAll recipes \
           --destination Recipes \
