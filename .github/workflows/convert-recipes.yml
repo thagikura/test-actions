@@ -18,22 +18,21 @@ jobs:
        git config user.email noreply@github.com
     - name: Checkout and run build with Gradle Wrapper
       run: | 
-         ARRAY=( "cow:moo"
-           "dinosaur:roar"
-           "bird:chirp"
-           "bash:rock" ) 
+         ARRAY=("8.1:8.0"
+           "8.0:8.0") 
          for animal in "${ARRAY[@]}" ; do
-           KEY=${animal%%:*}
-           git checkout -b test-agp-8.0"$KEY"
+           AGP=${animal%%:*}
+           GRADLE=${animal#*:}
+           git checkout -b test-agp"$AGP"
            cd convert-tool
            ./gradlew standaloneJar
-           tree
+           echo "Built converter"
            cd ..
            java -jar convert-tool/app/build/libs/recipes-converter-all.jar \
             --action convert --sourceAll recipes \
             --destination Recipes \
-            --agpVersion 8.0.0-alpha10 --gradleVersion 7.5.1 --overwrite
-           tree
+            --agpVersion "$AGP" --gradleVersion "$GRADLE" --overwrite
+           echo "Created recipes"
            mv Recipes/* .
            git add .
            rm -rf ./convert-tool/*
@@ -46,7 +45,9 @@ jobs:
            git rm -r --cached ./gradle-resources/*
            git rm -r --cached ./.github/*
            git rm -r --cached ./recipes/*
+           echo "Ready for commit"
            git commit --message "Prepare release"
-           git push -f --set-upstream origin test-agp-8.0"$KEY"
+           git push -f --set-upstream origin test-agp"$AGP"
            git checkout main
+           echo "Done"
          done
