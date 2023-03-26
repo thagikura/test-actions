@@ -20,7 +20,7 @@ jobs:
       run: | 
          git checkout -b test-agp-8.0
          cd convert-tool
-         /.gradlew standaloneJar
+         ./gradlew standaloneJar
          tree
          cd ..
          java -jar convert-tool/app/build/libs/recipes-converter-all.jar \
