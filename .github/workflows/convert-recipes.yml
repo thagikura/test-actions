@@ -23,7 +23,7 @@ jobs:
          for animal in "${ARRAY[@]}" ; do
            AGP=${animal%%:*}
            GRADLE=${animal#*:}
-           git checkout -b test-agp"$AGP"
+           git checkout -b test-agp-"$AGP"
            cd convert-tool
            ./gradlew standaloneJar
            echo "Built converter"
@@ -47,7 +47,7 @@ jobs:
            git rm -r --cached ./recipes/*
            echo "Ready for commit"
            git commit --message "Prepare release"
-           git push -f --set-upstream origin test-agp"$AGP"
+           git push -f --set-upstream origin test-agp-"$AGP"
            git checkout main
            echo "Done"
          done
