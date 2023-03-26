@@ -23,6 +23,7 @@ jobs:
            "bird:chirp"
            "bash:rock" ) 
          for animal in "${ARRAY[@]}" ; do
+           KEY=${animal%%:*}
            git checkout -b test-agp-8.0"$KEY"
            cd convert-tool
            ./gradlew standaloneJar
