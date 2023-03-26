@@ -20,9 +20,9 @@ jobs:
       run: | 
          ARRAY=("8.1.0:8.0.0"
            "8.0.0:8.0.0") 
-         for animal in "${ARRAY[@]}" ; do
-           AGP=${animal%%:*}
-           GRADLE=${animal#*:}
+         for index in "${ARRAY[@]}" ; do
+           AGP=${index%%:*}
+           GRADLE=${index#*:}
            git checkout -b test-agp-"$AGP"
            cd convert-tool
            ./gradlew standaloneJar
