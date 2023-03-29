@@ -21,6 +21,7 @@ jobs:
     - name: Checkout and run build with Gradle Wrapper
       run: | 
         cd main
+        ls
         cd convert-tool
         ./gradlew standaloneJar
         echo "Built converter"
