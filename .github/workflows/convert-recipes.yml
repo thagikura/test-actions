@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Checkout project sources
       uses: actions/checkout@v3
+      with:
+        path: main
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
     - name: Initialize mandatory git config
@@ -18,36 +20,40 @@ jobs:
        git config user.email noreply@github.com
     - name: Checkout and run build with Gradle Wrapper
       run: | 
-         AGP_TO_GRADLE=("8.1.0:8.0.0"
-           "8.0.0:8.0.0") 
-         for index in "${AGP_TO_GRADLE[@]}" ; do
-           AGP=${index%%:*}
-           GRADLE=${index#*:}
-           git checkout -b test-agp-"$AGP"
-           cd convert-tool
-           ./gradlew standaloneJar
-           echo "Built converter"
-           cd ..
-           java -jar convert-tool/app/build/libs/recipes-converter-all.jar \
+        cd main
+        cd convert-tool
+        ./gradlew standaloneJar
+        echo "Built converter"
+        cd ..
+
+        AGP_TO_GRADLE=("8.1.0:8.0.0", "8.0.0:8.0.0") 
+        for index in "${AGP_TO_GRADLE[@]}" ; do
+          AGP=${index%%:*}
+          GRADLE=${index#*:}
+          #branch name with major.minor, without .patch version
+          BRANCH="test-agp-"
+          BRANCH+=${AGP::-2}
+          BRANCH_DIR="../$BRANCH"
+
+          echo $BRANCH_DIR
+          mkdir $BRANCH_DIR
+          cp -r .git "$BRANCH_DIR/.git"
+
+          java -jar convert-tool/app/build/libs/recipes-converter-all.jar \
             --action convert --sourceAll recipes \
-            --destination Recipes \
+            --destination "$BRANCH_DIR" \
             --agpVersion "$AGP" --gradleVersion "$GRADLE" --overwrite
-           echo "Created recipes"
-           mv Recipes/* .
-           git add .
-           rm -rf ./convert-tool/*
-           rm ./convert-tool/.gitattributes
-           rm ./convert-tool/.gitignore
-           rm -rf ./gradle-resources/*
-           rm -rf ./.github/*
-           rm -rf ./recipes/*
-           git rm -r --cached ./convert-tool/*
-           git rm -r --cached ./gradle-resources/*
-           git rm -r --cached ./.github/*
-           git rm -r --cached ./recipes/*
-           echo "Ready for commit"
-           git commit --message "Prepare release"
-           git push -f --set-upstream origin test-agp-"$AGP"
-           git checkout main
-           echo "Done"
-         done
+
+          echo "Created recipes"
+          cd $BRANCH_DIR
+          git branch $BRANCH origin/$BRANCH || git branch $BRANCH
+          git reset $BRANCH
+          git checkout $BRANCH
+          git add -A
+          echo "Ready for commit"
+          git commit --message "Prepare release"
+          git push --set-upstream origin $BRANCH
+          echo "Done for $BRANCH"
+          cd ../main
+        done
+        cd ..
