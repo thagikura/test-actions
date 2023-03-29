@@ -47,7 +47,6 @@ jobs:
           echo "Created recipes"
           cd $BRANCH_DIR
           git branch $BRANCH origin/$BRANCH || git branch $BRANCH
-          git reset $BRANCH
           git checkout $BRANCH
           git add -A
           echo "Ready for commit"
