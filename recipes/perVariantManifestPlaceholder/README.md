@@ -5,3 +5,6 @@ This sample shows how to add a manifest placeholder value through the variant AP
 
 First commit.
 
+Second commit.
+
+
