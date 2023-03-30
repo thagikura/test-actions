@@ -16,11 +16,11 @@ jobs:
       uses: gradle/gradle-build-action@v2
     - name: Initialize mandatory git config
       run: |
+       cd main
        git config user.name "GitHub Actions"
        git config user.email noreply@github.com
     - name: Checkout and run build with Gradle Wrapper
-      run: | 
-        cd main
+      run: |
         ls
         cd convert-tool
         ./gradlew standaloneJar
