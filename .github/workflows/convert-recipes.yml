@@ -48,6 +48,7 @@ jobs:
 
           echo "Created recipes"
           cd $BRANCH_DIR
+          git remote -v
           git branch $BRANCH origin/$BRANCH || git branch $BRANCH
           git checkout $BRANCH
           git add -A
