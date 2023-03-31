@@ -28,7 +28,6 @@ jobs:
         ./gradlew standaloneJar
         echo "Built converter"
         cd ..
-
         AGP_TO_GRADLE=("8.1.0:8.0.0", "8.0.0:8.0.0") 
         for index in "${AGP_TO_GRADLE[@]}" ; do
           AGP=${index%%:*}
@@ -37,19 +36,17 @@ jobs:
           BRANCH="test-agp-"
           BRANCH+=${AGP::-2}
           BRANCH_DIR="../$BRANCH"
-
           echo $BRANCH_DIR
           mkdir $BRANCH_DIR
           cp -r .git "$BRANCH_DIR/.git"
-
           java -jar convert-tool/app/build/libs/recipes-converter-all.jar \
-            --action convert --sourceAll recipes \
-            --destination "$BRANCH_DIR" \
-            --agpVersion "$AGP" --gradleVersion "$GRADLE" --overwrite
-
+                    --action convert --sourceAll recipes \
+                    --destination "$BRANCH_DIR" \
+                    --agpVersion "$AGP" --gradleVersion "$GRADLE" --overwrite
           echo "Created recipes"
           cd $BRANCH_DIR
           git branch $BRANCH origin/$BRANCH || git branch $BRANCH
+          git reset $BRANCH
           git checkout $BRANCH
           git add -A
           echo "Ready for commit"
