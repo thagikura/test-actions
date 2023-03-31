@@ -23,6 +23,7 @@ jobs:
       run: |
         ls
         cd main
+        git fetch --all --depth=1
         cd convert-tool
         ./gradlew standaloneJar
         echo "Built converter"
@@ -48,7 +49,6 @@ jobs:
 
           echo "Created recipes"
           cd $BRANCH_DIR
-          git fetch --depth=1 origin/$BRANCH
           git branch $BRANCH origin/$BRANCH || git branch $BRANCH
           git checkout $BRANCH
           git add -A
