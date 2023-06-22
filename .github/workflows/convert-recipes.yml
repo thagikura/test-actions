@@ -28,7 +28,7 @@ jobs:
         ./gradlew standaloneJar
         echo "Built converter"
         cd ..
-        AGP_TO_GRADLE=("8.1.0:8.0.0", "8.0.0:8.0.0") 
+        AGP_TO_GRADLE=("8.1.0:8.0", "8.0.0:8.0") 
         for index in "${AGP_TO_GRADLE[@]}" ; do
           AGP=${index%%:*}
           GRADLE=${index#*:}
