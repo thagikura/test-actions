@@ -45,6 +45,7 @@ jobs:
                     --agpVersion "$AGP" --gradleVersion "$GRADLE" --overwrite
           echo "Created recipes"
           cd $BRANCH_DIR
+          find . -name gradlew | xargs chmod +x
           git branch $BRANCH origin/$BRANCH || git branch $BRANCH
           git reset $BRANCH
           git checkout $BRANCH
